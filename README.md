@@ -21,6 +21,8 @@ sbt "runMain com.example.DiningPhilosophers.PhilosophersApp n false"  # With dea
 sbt "runMain com.example.DiningPhilosophers.PhilosophersApp n true"   # Deadlock-free
 ```
 
+Replace `n` with desired number of philosophers (≥2).
+
 ### P Language Verification
 ```bash
 cd P_verification
@@ -31,17 +33,3 @@ p.exe check -tc NoDeadLockImpl -s 10    # Verifies deadlock-free
 
 ## Solution Strategy
 **Resource Hierarchy approach**: Each fork is assigned a unique priority (its index). Philosophers always acquire the fork with the lower priority first, ensuring no circular wait condition and preventing deadlock.
-
-## What You'll Observe
-
-**With deadlock (false)**:
-- Philosophers acquire left fork first, then right fork.
-- System may hang when all philosophers hold one fork simultaneously.
-- Console shows acquisition attempts but no eating in deadlock case.
-
-**Without deadlock (true)**:
-- Philosophers use the Resource Hierarchy approach, acquiring the lower-priority fork first.
-- Continuous cycle of thinking→eating→thinking.
-- P verification explores all possible execution paths systematically.
-
-Replace `n` with desired number of philosophers (≥2).
