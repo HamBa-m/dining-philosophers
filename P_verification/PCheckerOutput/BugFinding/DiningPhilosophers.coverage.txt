@@ -1,0 +1,70 @@
+Total event coverage: 100.0%
+============================
+Monitor: DeadlockDetector
+=========================
+Event coverage: 100.0%
+
+	State: Monitoring
+		State event coverage: 100.0%
+		Events received: ePhilosopherAcquiredOneFork, ePhilosopherReleasedForks, eSize
+		Previous states: Monitoring
+		Next states: Monitoring
+
+StateMachine: Fork
+==================
+Event coverage: 100.0%
+
+	State: Available
+		State event coverage: 100.0%
+		Events received: TryAcquire
+		Events sent: AcquireSuccess
+		Previous states: NotAvailable
+		Next states: NotAvailable
+
+	State: NotAvailable
+		State event coverage: 100.0%
+		Events received: Release, TryAcquire
+		Events sent: AcquireFailed
+		Previous states: Available
+		Next states: Available
+
+StateMachine: Main_NODL
+=======================
+Event coverage: 100.0%
+
+	State: Init
+		State has no expected events, so coverage is 100%
+
+StateMachine: Philosopher
+=========================
+Event coverage: 100.0%
+
+	State: Init
+		State has no expected events, so coverage is 100%
+		Next states: Thinking
+
+	State: Thinking
+		State has no expected events, so coverage is 100%
+		Previous states: Eating, Hungry, Init, TryToGetSecondFork
+		Next states: Hungry
+
+	State: Hungry
+		State event coverage: 100.0%
+		Events received: AcquireFailed, AcquireSuccess
+		Events sent: TryAcquire
+		Previous states: Thinking
+		Next states: Thinking, TryToGetSecondFork
+
+	State: TryToGetSecondFork
+		State event coverage: 100.0%
+		Events received: AcquireFailed, AcquireSuccess
+		Events sent: Release, TryAcquire
+		Previous states: Hungry
+		Next states: Eating, Thinking
+
+	State: Eating
+		State has no expected events, so coverage is 100%
+		Events sent: Release
+		Previous states: TryToGetSecondFork
+		Next states: Thinking
+

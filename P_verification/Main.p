@@ -47,7 +47,7 @@ machine Fork {
             if (isHeld && holder == philosopherId) {
                 holder = -1;
                 isHeld = false;
-                goto Available;
+                goto Available, priority;  // Fixed: Provide the priority parameter
             }
         }
     }
