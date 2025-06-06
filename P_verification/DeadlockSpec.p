@@ -1,4 +1,4 @@
-spec DeadlockDetector observes ePhilosopherAcquiredOneFork, ePhilosopherReleasedForks, eSize {
+spec DeadlockDetector observes ePhilosopherAcquiredOneFork, ePhilosopherAcquiredTwoForks, eSize {
     var philosophersWithOneFork: set[int];
     var N: int;
     
@@ -13,16 +13,13 @@ spec DeadlockDetector observes ePhilosopherAcquiredOneFork, ePhilosopherReleased
         }
         
         on ePhilosopherAcquiredOneFork do (philosopherId: int) {
-                philosophersWithOneFork += (philosopherId);
-                
-                assert sizeof(philosophersWithOneFork) < N,
-                    format("DEADLOCK DETECTED! All {0} philosophers hold one fork simultaneously", N);
+            philosophersWithOneFork += (philosopherId);
+            assert sizeof(philosophersWithOneFork) < N,
+                format("DEADLOCK DETECTED! All {0} philosophers hold one fork simultaneously", N);
         }
         
-        on ePhilosopherReleasedForks do (philosopherId: int) {
-   
-                philosophersWithOneFork -= (philosopherId);
-
+        on ePhilosopherAcquiredTwoForks do (philosopherId: int) {
+            philosophersWithOneFork -= (philosopherId);
         }
     }
 }

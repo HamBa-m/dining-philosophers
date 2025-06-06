@@ -45,7 +45,7 @@ Event coverage: 100.0%
 
 	State: Thinking
 		State has no expected events, so coverage is 100%
-		Previous states: Eating, Init, TryToGetSecondFork
+		Previous states: Eating, Init
 		Next states: Hungry
 
 	State: Hungry
@@ -58,9 +58,9 @@ Event coverage: 100.0%
 	State: TryToGetSecondFork
 		State event coverage: 100.0%
 		Events received: AcquireFailed, AcquireSuccess
-		Events sent: Release, TryAcquire
+		Events sent: TryAcquire
 		Previous states: Hungry, TryToGetSecondFork
-		Next states: Eating, Thinking, TryToGetSecondFork
+		Next states: Eating, TryToGetSecondFork
 
 	State: Eating
 		State has no expected events, so coverage is 100%

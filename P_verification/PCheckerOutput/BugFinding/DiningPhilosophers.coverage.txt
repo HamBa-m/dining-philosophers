@@ -6,7 +6,7 @@ Event coverage: 100.0%
 
 	State: Monitoring
 		State event coverage: 100.0%
-		Events received: ePhilosopherAcquiredOneFork, ePhilosopherReleasedForks, eSize
+		Events received: ePhilosopherAcquiredOneFork, ePhilosopherAcquiredTwoForks, eSize
 		Previous states: Monitoring
 		Next states: Monitoring
 
@@ -45,22 +45,22 @@ Event coverage: 100.0%
 
 	State: Thinking
 		State has no expected events, so coverage is 100%
-		Previous states: Eating, Hungry, Init, TryToGetSecondFork
+		Previous states: Eating, Init
 		Next states: Hungry
 
 	State: Hungry
 		State event coverage: 100.0%
 		Events received: AcquireFailed, AcquireSuccess
 		Events sent: TryAcquire
-		Previous states: Thinking
-		Next states: Thinking, TryToGetSecondFork
+		Previous states: Hungry, Thinking
+		Next states: Hungry, TryToGetSecondFork
 
 	State: TryToGetSecondFork
 		State event coverage: 100.0%
 		Events received: AcquireFailed, AcquireSuccess
-		Events sent: Release, TryAcquire
-		Previous states: Hungry
-		Next states: Eating, Thinking
+		Events sent: TryAcquire
+		Previous states: Hungry, TryToGetSecondFork
+		Next states: Eating, TryToGetSecondFork
 
 	State: Eating
 		State has no expected events, so coverage is 100%

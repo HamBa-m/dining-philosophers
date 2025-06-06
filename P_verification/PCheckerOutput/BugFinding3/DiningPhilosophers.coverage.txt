@@ -1,35 +1,35 @@
-Total event coverage: 60.0%
-===========================
+Total event coverage: 100.0%
+============================
 Monitor: DeadlockDetector
 =========================
-Event coverage: 66.7%
+Event coverage: 100.0%
 
 	State: Monitoring
-		State event coverage: 66.7%
-		Events received: ePhilosopherAcquiredOneFork, eSize
-		Events not covered: ePhilosopherReleasedForks
+		State event coverage: 100.0%
+		Events received: ePhilosopherAcquiredOneFork, ePhilosopherReleasedForks, eSize
 		Previous states: Monitoring
 		Next states: Monitoring
 
 StateMachine: Fork
 ==================
-Event coverage: 66.7%
+Event coverage: 100.0%
 
 	State: Available
 		State event coverage: 100.0%
 		Events received: TryAcquire
 		Events sent: AcquireSuccess
+		Previous states: NotAvailable
 		Next states: NotAvailable
 
 	State: NotAvailable
-		State event coverage: 50.0%
-		Events received: TryAcquire
+		State event coverage: 100.0%
+		Events received: Release, TryAcquire
 		Events sent: AcquireFailed
-		Events not covered: Release
 		Previous states: Available
+		Next states: Available
 
-StateMachine: Main
-==================
+StateMachine: Main_NODL
+=======================
 Event coverage: 100.0%
 
 	State: Init
@@ -37,7 +37,7 @@ Event coverage: 100.0%
 
 StateMachine: Philosopher
 =========================
-Event coverage: 50.0%
+Event coverage: 100.0%
 
 	State: Init
 		State has no expected events, so coverage is 100%
@@ -45,25 +45,26 @@ Event coverage: 50.0%
 
 	State: Thinking
 		State has no expected events, so coverage is 100%
-		Previous states: Init
+		Previous states: Eating, Init, TryToGetSecondFork
 		Next states: Hungry
 
 	State: Hungry
-		State event coverage: 50.0%
-		Events received: AcquireSuccess
+		State event coverage: 100.0%
+		Events received: AcquireFailed, AcquireSuccess
 		Events sent: TryAcquire
-		Events not covered: AcquireFailed
-		Previous states: Thinking
-		Next states: TryToGetSecondFork
+		Previous states: Hungry, Thinking
+		Next states: Hungry, TryToGetSecondFork
 
 	State: TryToGetSecondFork
-		State event coverage: 50.0%
-		Events received: AcquireFailed
-		Events sent: TryAcquire
-		Events not covered: AcquireSuccess
+		State event coverage: 100.0%
+		Events received: AcquireFailed, AcquireSuccess
+		Events sent: Release, TryAcquire
 		Previous states: Hungry, TryToGetSecondFork
-		Next states: TryToGetSecondFork
+		Next states: Eating, Thinking, TryToGetSecondFork
 
 	State: Eating
 		State has no expected events, so coverage is 100%
+		Events sent: Release
+		Previous states: TryToGetSecondFork
+		Next states: Thinking
 

@@ -6,6 +6,7 @@ event AcquireFailed;
 
 // Monitoring events for specification
 event ePhilosopherAcquiredOneFork : int;
+event ePhilosopherAcquiredTwoForks : int; // NEW EVENT
 event ePhilosopherReleasedForks : int;
 event eSize : int;
 
@@ -110,6 +111,7 @@ machine Philosopher {
         
         on AcquireSuccess do {
             hasSecondFork = true;
+            announce ePhilosopherAcquiredTwoForks, id; // NEW ANNOUNCE
             goto Eating;
         }
         

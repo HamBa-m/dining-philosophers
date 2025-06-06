@@ -67,6 +67,15 @@ namespace PImplementation
 }
 namespace PImplementation
 {
+    internal partial class ePhilosopherAcquiredTwoForks : Event
+    {
+        public ePhilosopherAcquiredTwoForks() : base() {}
+        public ePhilosopherAcquiredTwoForks (PInt payload): base(payload){ }
+        public override IPValue Clone() { return new ePhilosopherAcquiredTwoForks();}
+    }
+}
+namespace PImplementation
+{
     internal partial class ePhilosopherReleasedForks : Event
     {
         public ePhilosopherReleasedForks() : base() {}
@@ -100,6 +109,7 @@ namespace PImplementation
             this.sends.Add(nameof(Release));
             this.sends.Add(nameof(TryAcquire));
             this.sends.Add(nameof(ePhilosopherAcquiredOneFork));
+            this.sends.Add(nameof(ePhilosopherAcquiredTwoForks));
             this.sends.Add(nameof(ePhilosopherReleasedForks));
             this.sends.Add(nameof(eSize));
             this.sends.Add(nameof(PHalt));
@@ -108,6 +118,7 @@ namespace PImplementation
             this.receives.Add(nameof(Release));
             this.receives.Add(nameof(TryAcquire));
             this.receives.Add(nameof(ePhilosopherAcquiredOneFork));
+            this.receives.Add(nameof(ePhilosopherAcquiredTwoForks));
             this.receives.Add(nameof(ePhilosopherReleasedForks));
             this.receives.Add(nameof(eSize));
             this.receives.Add(nameof(PHalt));
@@ -230,6 +241,7 @@ namespace PImplementation
             this.sends.Add(nameof(Release));
             this.sends.Add(nameof(TryAcquire));
             this.sends.Add(nameof(ePhilosopherAcquiredOneFork));
+            this.sends.Add(nameof(ePhilosopherAcquiredTwoForks));
             this.sends.Add(nameof(ePhilosopherReleasedForks));
             this.sends.Add(nameof(eSize));
             this.sends.Add(nameof(PHalt));
@@ -238,6 +250,7 @@ namespace PImplementation
             this.receives.Add(nameof(Release));
             this.receives.Add(nameof(TryAcquire));
             this.receives.Add(nameof(ePhilosopherAcquiredOneFork));
+            this.receives.Add(nameof(ePhilosopherAcquiredTwoForks));
             this.receives.Add(nameof(ePhilosopherReleasedForks));
             this.receives.Add(nameof(eSize));
             this.receives.Add(nameof(PHalt));
@@ -364,6 +377,7 @@ namespace PImplementation
         {
             Philosopher currentMachine = this;
             hasSecondFork = (PBool)(((PBool)true));
+            currentMachine.Announce((Event)new ePhilosopherAcquiredTwoForks(((PInt)0)), id);
             currentMachine.RaiseGotoStateEvent<Eating>();
             return;
         }
@@ -448,6 +462,7 @@ namespace PImplementation
             this.sends.Add(nameof(Release));
             this.sends.Add(nameof(TryAcquire));
             this.sends.Add(nameof(ePhilosopherAcquiredOneFork));
+            this.sends.Add(nameof(ePhilosopherAcquiredTwoForks));
             this.sends.Add(nameof(ePhilosopherReleasedForks));
             this.sends.Add(nameof(eSize));
             this.sends.Add(nameof(PHalt));
@@ -456,6 +471,7 @@ namespace PImplementation
             this.receives.Add(nameof(Release));
             this.receives.Add(nameof(TryAcquire));
             this.receives.Add(nameof(ePhilosopherAcquiredOneFork));
+            this.receives.Add(nameof(ePhilosopherAcquiredTwoForks));
             this.receives.Add(nameof(ePhilosopherReleasedForks));
             this.receives.Add(nameof(eSize));
             this.receives.Add(nameof(PHalt));
@@ -563,6 +579,7 @@ namespace PImplementation
             this.sends.Add(nameof(Release));
             this.sends.Add(nameof(TryAcquire));
             this.sends.Add(nameof(ePhilosopherAcquiredOneFork));
+            this.sends.Add(nameof(ePhilosopherAcquiredTwoForks));
             this.sends.Add(nameof(ePhilosopherReleasedForks));
             this.sends.Add(nameof(eSize));
             this.sends.Add(nameof(PHalt));
@@ -571,6 +588,7 @@ namespace PImplementation
             this.receives.Add(nameof(Release));
             this.receives.Add(nameof(TryAcquire));
             this.receives.Add(nameof(ePhilosopherAcquiredOneFork));
+            this.receives.Add(nameof(ePhilosopherAcquiredTwoForks));
             this.receives.Add(nameof(ePhilosopherReleasedForks));
             this.receives.Add(nameof(eSize));
             this.receives.Add(nameof(PHalt));
@@ -669,7 +687,7 @@ namespace PImplementation
         private PInt N_2 = ((PInt)0);
         static DeadlockDetector() {
             observes.Add(nameof(ePhilosopherAcquiredOneFork));
-            observes.Add(nameof(ePhilosopherReleasedForks));
+            observes.Add(nameof(ePhilosopherAcquiredTwoForks));
             observes.Add(nameof(eSize));
         }
         
@@ -709,7 +727,7 @@ namespace PImplementation
             }
             else
             {
-                TMP_tmp3_8 = (PString)(((PString) String.Format("DeadlockSpec.p:18:17")));
+                TMP_tmp3_8 = (PString)(((PString) String.Format("DeadlockSpec.p:17:13")));
                 TMP_tmp4_7 = (PInt)(((PInt)((IPValue)N_2)?.Clone()));
                 TMP_tmp5_5 = (PString)(((PString) String.Format("DEADLOCK DETECTED! All {0} philosophers hold one fork simultaneously",TMP_tmp4_7)));
                 TMP_tmp6_4 = (PString)(((PString) String.Format("{0} {1}",TMP_tmp3_8,TMP_tmp5_5)));
@@ -727,7 +745,7 @@ namespace PImplementation
         [OnEntry(nameof(Anon_15))]
         [OnEventDoAction(typeof(eSize), nameof(Anon_16))]
         [OnEventDoAction(typeof(ePhilosopherAcquiredOneFork), nameof(Anon_17))]
-        [OnEventDoAction(typeof(ePhilosopherReleasedForks), nameof(Anon_18))]
+        [OnEventDoAction(typeof(ePhilosopherAcquiredTwoForks), nameof(Anon_18))]
         class Monitoring : State
         {
         }
@@ -756,7 +774,7 @@ namespace PImplementation
             PModule.monitorObserves.Clear();
             PModule.monitorObserves[nameof(DeadlockDetector)] = new List<string>();
             PModule.monitorObserves[nameof(DeadlockDetector)].Add(nameof(ePhilosopherAcquiredOneFork));
-            PModule.monitorObserves[nameof(DeadlockDetector)].Add(nameof(ePhilosopherReleasedForks));
+            PModule.monitorObserves[nameof(DeadlockDetector)].Add(nameof(ePhilosopherAcquiredTwoForks));
             PModule.monitorObserves[nameof(DeadlockDetector)].Add(nameof(eSize));
         }
         
@@ -810,7 +828,7 @@ namespace PImplementation
             PModule.monitorObserves.Clear();
             PModule.monitorObserves[nameof(DeadlockDetector)] = new List<string>();
             PModule.monitorObserves[nameof(DeadlockDetector)].Add(nameof(ePhilosopherAcquiredOneFork));
-            PModule.monitorObserves[nameof(DeadlockDetector)].Add(nameof(ePhilosopherReleasedForks));
+            PModule.monitorObserves[nameof(DeadlockDetector)].Add(nameof(ePhilosopherAcquiredTwoForks));
             PModule.monitorObserves[nameof(DeadlockDetector)].Add(nameof(eSize));
         }
         
@@ -866,10 +884,10 @@ namespace PImplementation
     public partial class PHelper {
         public static void InitializeInterfaces() {
             PInterfaces.Clear();
-            PInterfaces.AddInterface(nameof(I_Fork), nameof(AcquireFailed), nameof(AcquireSuccess), nameof(Release), nameof(TryAcquire), nameof(ePhilosopherAcquiredOneFork), nameof(ePhilosopherReleasedForks), nameof(eSize), nameof(PHalt));
-            PInterfaces.AddInterface(nameof(I_Philosopher), nameof(AcquireFailed), nameof(AcquireSuccess), nameof(Release), nameof(TryAcquire), nameof(ePhilosopherAcquiredOneFork), nameof(ePhilosopherReleasedForks), nameof(eSize), nameof(PHalt));
-            PInterfaces.AddInterface(nameof(I_Main), nameof(AcquireFailed), nameof(AcquireSuccess), nameof(Release), nameof(TryAcquire), nameof(ePhilosopherAcquiredOneFork), nameof(ePhilosopherReleasedForks), nameof(eSize), nameof(PHalt));
-            PInterfaces.AddInterface(nameof(I_Main_NODL), nameof(AcquireFailed), nameof(AcquireSuccess), nameof(Release), nameof(TryAcquire), nameof(ePhilosopherAcquiredOneFork), nameof(ePhilosopherReleasedForks), nameof(eSize), nameof(PHalt));
+            PInterfaces.AddInterface(nameof(I_Fork), nameof(AcquireFailed), nameof(AcquireSuccess), nameof(Release), nameof(TryAcquire), nameof(ePhilosopherAcquiredOneFork), nameof(ePhilosopherAcquiredTwoForks), nameof(ePhilosopherReleasedForks), nameof(eSize), nameof(PHalt));
+            PInterfaces.AddInterface(nameof(I_Philosopher), nameof(AcquireFailed), nameof(AcquireSuccess), nameof(Release), nameof(TryAcquire), nameof(ePhilosopherAcquiredOneFork), nameof(ePhilosopherAcquiredTwoForks), nameof(ePhilosopherReleasedForks), nameof(eSize), nameof(PHalt));
+            PInterfaces.AddInterface(nameof(I_Main), nameof(AcquireFailed), nameof(AcquireSuccess), nameof(Release), nameof(TryAcquire), nameof(ePhilosopherAcquiredOneFork), nameof(ePhilosopherAcquiredTwoForks), nameof(ePhilosopherReleasedForks), nameof(eSize), nameof(PHalt));
+            PInterfaces.AddInterface(nameof(I_Main_NODL), nameof(AcquireFailed), nameof(AcquireSuccess), nameof(Release), nameof(TryAcquire), nameof(ePhilosopherAcquiredOneFork), nameof(ePhilosopherAcquiredTwoForks), nameof(ePhilosopherReleasedForks), nameof(eSize), nameof(PHalt));
         }
     }
     
