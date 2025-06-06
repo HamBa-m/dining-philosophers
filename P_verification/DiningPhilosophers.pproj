@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- P project file for Dining Philosophers -->
+<Project>
+    <ProjectName>DiningPhilosophers</ProjectName>
+    <InputFiles>
+        <PFile>Main.p</PFile>
+        <PFile>DeadlockSpec.p</PFile>
+    </InputFiles>
+    <OutputDir>./</OutputDir>
+</Project>

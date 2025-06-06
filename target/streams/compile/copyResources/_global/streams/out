@@ -1,0 +1,6 @@
+[0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\workspace\cloud-prog\myProject\akka-quickstart\src\main\resources\application-1.conf,C:\workspace\cloud-prog\myProject\akka-quickstart\target\scala-2.13\classes\application-1.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\workspace\cloud-prog\myProject\akka-quickstart\src\main\resources\application-2.conf,C:\workspace\cloud-prog\myProject\akka-quickstart\target\scala-2.13\classes\application-2.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\workspace\cloud-prog\myProject\akka-quickstart\src\main\resources\application-3.conf,C:\workspace\cloud-prog\myProject\akka-quickstart\target\scala-2.13\classes\application-3.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\workspace\cloud-prog\myProject\akka-quickstart\src\main\resources\logback.xml,C:\workspace\cloud-prog\myProject\akka-quickstart\target\scala-2.13\classes\logback.xml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\workspace\cloud-prog\myProject\akka-quickstart\src\main\resources\test.conf,C:\workspace\cloud-prog\myProject\akka-quickstart\target\scala-2.13\classes\test.conf)[0m

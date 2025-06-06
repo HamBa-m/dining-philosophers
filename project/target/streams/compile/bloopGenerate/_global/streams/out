@@ -1,0 +1,4 @@
+[0m[[0m[0mdebug[0m] [0m[0m[akka-quickstart-build] Classpath dependencies List()[0m
+[0m[[0m[0mdebug[0m] [0m[0m[akka-quickstart-build] Dependencies from configurations List()[0m
+[0m[[0m[0mdebug[0m] [0m[0mBloop wrote the configuration of project 'akka-quickstart-build' to 'C:\workspace\cloud-prog\myProject\akka-quickstart\project\.bloop\akka-quickstart-build.json'[0m
+[0m[[0m[32msuccess[0m] [0m[0mGenerated .bloop\akka-quickstart-build.json[0m
